@@ -1,4 +1,3 @@
-
 // =========================
 // اختيار الحجم
 // =========================
@@ -211,6 +210,7 @@ function addToCart(button) {
     showCartMessage(
         "تم إضافة المنتج للسلة"
     );
+
 }
 
 
@@ -233,7 +233,6 @@ function updateCart() {
 
 
     if (!cartItems || !cartTotal) {
-
         return;
     }
 
@@ -338,6 +337,7 @@ function updateCart() {
 
 
     updateCartCount();
+
 }
 
 
@@ -354,7 +354,6 @@ function updateCartCount() {
 
 
     if (!cartCount) {
-
         return;
     }
 
@@ -372,6 +371,7 @@ function updateCartCount() {
 
     cartCount.textContent =
         totalQuantity;
+
 }
 
 
@@ -425,7 +425,6 @@ function openCart() {
 
 
     if (!cartPopup || !cartOverlay) {
-
         return;
     }
 
@@ -445,6 +444,7 @@ function openCart() {
 
     document.body.style.overflow =
         "hidden";
+
 }
 
 
@@ -467,7 +467,6 @@ function closeCart() {
 
 
     if (!cartPopup || !cartOverlay) {
-
         return;
     }
 
@@ -484,6 +483,7 @@ function closeCart() {
 
     document.body.style.overflow =
         "";
+
 }
 
 
@@ -492,7 +492,6 @@ function closeCart() {
 // =========================
 
 function checkoutWhatsApp() {
-
 
     // التأكد أن السلة ليست فارغة
 
@@ -662,7 +661,6 @@ function checkoutWhatsApp() {
     if (customerNotes) {
 
         message +=
-
             `ملاحظات: ${customerNotes}\n`;
 
     }
@@ -683,11 +681,11 @@ function checkoutWhatsApp() {
 
     const whatsappURL =
 
-        "https://web.whatsapp.com/send?phone=" +
+        "https://wa.me/" +
 
         phoneNumber +
 
-        "&text=" +
+        "?text=" +
 
         encodeURIComponent(message);
 
@@ -711,17 +709,19 @@ function openWhatsApp() {
 
 
     const message =
+
         "*EMY SWEET*\n\n" +
+
         "مرحبًا، أريد طلب منتجات من المنيو.";
 
 
     const whatsappURL =
 
-        "https://web.whatsapp.com/send?phone=" +
+        "https://wa.me/" +
 
         phoneNumber +
 
-        "&text=" +
+        "?text=" +
 
         encodeURIComponent(message);
 
@@ -747,9 +747,7 @@ function showCartMessage(message) {
 
 
     if (oldMessage) {
-
         oldMessage.remove();
-
     }
 
 
@@ -791,9 +789,7 @@ function showCartMessage(message) {
         setTimeout(function () {
 
             if (messageBox) {
-
                 messageBox.remove();
-
             }
 
         }, 300);
