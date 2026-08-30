@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Emy Sweet</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+<!-- =========================
+     Header
+========================== -->
+
+<header>
+
+
+<img
+    src="images/logo.png"
+    alt="Emy Sweet Logo"
+    class="logo"
+>
+
+<p>
+    حاجة حلوة تستاهل تتجرب
+</p>
+
+
+</header>
+
+<!-- =========================
+     Floating Cart
+========================== -->
+
+<button
+class="cart-floating"
+type="button"
+onclick="openCart()"
+aria-label="فتح سلة الطلبات"
+
+>
+
+
+سلة
+
+
+
+<span id="cartCount">0</span>
+
+
+</button>
+
+<!-- =========================
+     Cart Overlay
+========================== -->
+
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="closeCart()"
+></div>
+
+<!-- =========================
+     Cart Popup
+========================== -->
+
+<section
+    class="cart-popup"
+    id="cartPopup"
+>
+
+
+<!-- Cart Header -->
+
+<div class="cart-popup-header">
+
+    <div>
+
+        <h2>
+            سلة الطلبات
+        </h2>
+
+        <small>
+            راجعي طلبك قبل الإرسال
+        </small>
+
+    </div>
+
+    <button
+        type="button"
+        class="cart-close"
+        onclick="closeCart()"
+        aria-label="إغلاق السلة"
+    >
+        ×
+    </button>
+
+</div>
+
+
+<!-- Cart Items -->
+
+<div
+    id="cartItems"
+    class="cart-items"
+>
+
+    <p>
+        السلة فارغة
+    </p>
+
+</div>
+
+
+<!-- Cart Total -->
+
+<div class="cart-total">
+
+    <span>
+        إجمالي الطلب
+    </span>
+
+    <strong>
+
+        <span id="cartTotal">
+            0
+        </span>
+
+        جنيه
+
+    </strong>
+
+</div>
+
+
+<!-- =========================
+     Customer Information
+========================== -->
+
+<div class="customer-info">
+
+    <div class="customer-title">
+
+        <div class="customer-icon">
+            <span>العميل</span>
+        </div>
+
+        <div>
+
+            <h3>
+                بيانات التوصيل
+            </h3>
+
+            <p>
+                اكتبي بياناتك علشان نقدر نتواصل معاكي
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Name -->
+
+    <div class="form-group">
+
+        <label for="customerName">
+
+            الاسم
+
+            <span>
+                *
+            </span>
+
+        </label>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="اكتبي اسمك"
+        >
+
+    </div>
+
+
+    <!-- Phone -->
+
+    <div class="form-group">
+
+        <label for="customerPhone">
+
+            رقم الموبايل
+
+            <span>
+                *
+            </span>
+
+        </label>
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="01xxxxxxxxx"
+        >
+
+    </div>
+
+
+    <!-- Address -->
+
+    <div class="form-group">
+
+        <label for="customerAddress">
+
+            عنوان التوصيل
+
+            <span>
+                *
+            </span>
+
+        </label>
+
+        <textarea
+            id="customerAddress"
+            rows="3"
+            placeholder="اكتبي العنوان بالتفصيل"
+        ></textarea>
+
+    </div>
+
+
+    <!-- Notes -->
+
+    <div class="form-group">
+
+        <label for="customerNotes">
+
+            ملاحظات على الطلب
+
+            <small>
+                اختياري
+            </small>
+
+        </label>
+
+        <textarea
+            id="customerNotes"
+            rows="2"
+            placeholder="مثلاً: وقت مناسب للتوصيل..."
+        ></textarea>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     Checkout
+========================== -->
+
+<button
+    class="whatsapp checkout-button"
+    type="button"
+    onclick="checkoutWhatsApp()"
+>
+    إرسال الطلب على واتساب
+</button>
+
+
+</section>
+
+<!-- =========================
+     Main
+========================== -->
+
+<main>
+
+
+<!-- =========================
+     Menu
+========================== -->
+
+<section class="menu">
+
+    <h2>
+        المنيو
+    </h2>
+
+
+    <div class="products">
+
+
+        <!-- =========================
+             Mango
+        ========================== -->
+
+        <div
+            class="product"
+            data-product="كب كيك المانجا"
+        >
+
+            <img
+                src="images/mango.jpg"
+                alt="كب كيك المانجا"
+            >
+
+
+            <h3>
+                كب كيك المانجا
+            </h3>
+
+
+            <p>
+                كيكة بطعم المانجا الكريمي اللذيذ
+            </p>
+
+
+            <!-- Sizes -->
+
+            <div class="sizes">
+
+                <button
+                    type="button"
+                    data-size="صغير"
+                    data-price="25"
+                >
+                    صغير - 25 جنيه
+                </button>
+
+
+                <button
+                    type="button"
+                    data-size="كبير"
+                    data-price="35"
+                >
+                    كبير - 35 جنيه
+                </button>
+
+            </div>
+
+
+            <!-- Quantity -->
+
+            <div class="quantity">
+
+                <button
+                    type="button"
+                    class="quantity-btn minus"
+                >
+                    −
+                </button>
+
+
+                <span class="quantity-number">
+                    1
+                </span>
+
+
+                <button
+                    type="button"
+                    class="quantity-btn plus"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <!-- Product Total -->
+
+            <p class="product-total">
+
+                الإجمالي:
+
+                <span>
+                    0
+                </span>
+
+                جنيه
+
+            </p>
+
+
+            <!-- Add To Cart -->
+
+            <button
+                class="order-btn"
+                type="button"
+                onclick="addToCart(this)"
+            >
+                أضيفي للسلة
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             Chocolate
+        ========================== -->
+
+        <div
+            class="product"
+            data-product="كب كيك الشوكولاتة"
+        >
+
+            <img
+                src="images/chocolate.jpg"
+                alt="كب كيك الشوكولاتة"
+            >
+
+
+            <h3>
+                كب كيك الشوكولاتة
+            </h3>
+
+
+            <p>
+                كيكة شوكولاتة غنية ولذيذة
+            </p>
+
+
+            <!-- Sizes -->
+
+            <div class="sizes">
+
+                <button
+                    type="button"
+                    data-size="صغير"
+                    data-price="25"
+                >
+                    صغير - 25 جنيه
+                </button>
+
+
+                <button
+                    type="button"
+                    data-size="كبير"
+                    data-price="35"
+                >
+                    كبير - 35 جنيه
+                </button>
+
+            </div>
+
+
+            <!-- Quantity -->
+
+            <div class="quantity">
+
+                <button
+                    type="button"
+                    class="quantity-btn minus"
+                >
+                    −
+                </button>
+
+
+                <span class="quantity-number">
+                    1
+                </span>
+
+
+                <button
+                    type="button"
+                    class="quantity-btn plus"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <!-- Product Total -->
+
+            <p class="product-total">
+
+                الإجمالي:
+
+                <span>
+                    0
+                </span>
+
+                جنيه
+
+            </p>
+
+
+            <!-- Add To Cart -->
+
+            <button
+                class="order-btn"
+                type="button"
+                onclick="addToCart(this)"
+            >
+                أضيفي للسلة
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     About Emy Sweet
+========================== -->
+
+<section class="about-brand">
+
+    <div class="about-content">
+
+        <span class="about-label">
+            Emy Sweet
+        </span>
+
+        <h2>
+            حاجة حلوة تستاهل تتجرب
+        </h2>
+
+        <p>
+            في Emy Sweet بنحب نقدم حلويات بطعم مميز
+            وشكل بسيط يخلي كل قطعة لها طعمها الخاص.
+        </p>
+
+        <p>
+            بدأنا بحلم صغير، وهدفنا إن كل طلب يوصلك
+            بجودة وطعم يخليكي تحبي تجربيه تاني.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     Coming Soon
+========================== -->
+
+<section class="coming-soon">
+
+    <h2>
+        قريبًا
+    </h2>
+
+
+    <div class="coming-products">
+
+        <div>
+            كيكة الفراولة
+        </div>
+
+
+        <div>
+            تشيز كيك
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     General WhatsApp
+========================== -->
+
+<a
+    class="whatsapp general-whatsapp"
+    href="#"
+    onclick="openWhatsApp(); return false;"
+>
+    اطلبي على واتساب
+</a>
+```
+
+</main>
+
+<!-- =========================
+     Footer
+========================== -->
+
+<footer>
+
+
+<p>
+    Emy Sweet
+</p>
+
+
+</footer>
+
+<!-- =========================
+     JavaScript
+========================== -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
