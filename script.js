@@ -39,8 +39,6 @@ document.querySelectorAll(".product").forEach(function (product) {
         product.querySelector(".quantity-number");
 
 
-    // زر +
-
     if (plusButton) {
 
         plusButton.addEventListener("click", function () {
@@ -58,8 +56,6 @@ document.querySelectorAll(".product").forEach(function (product) {
 
     }
 
-
-    // زر -
 
     if (minusButton) {
 
@@ -240,8 +236,6 @@ function updateCart() {
     cartItems.innerHTML = "";
 
 
-    // السلة فاضية
-
     if (cart.length === 0) {
 
         cartItems.innerHTML =
@@ -258,8 +252,6 @@ function updateCart() {
 
     let totalOrder = 0;
 
-
-    // عرض المنتجات
 
     cart.forEach(function (item, index) {
 
@@ -330,8 +322,6 @@ function updateCart() {
     });
 
 
-    // إجمالي الطلب
-
     cartTotal.textContent =
         totalOrder;
 
@@ -382,7 +372,6 @@ function updateCartCount() {
 function removeFromCart(index) {
 
     cart.splice(index, 1);
-
 
     updateCart();
 
@@ -493,8 +482,6 @@ function closeCart() {
 
 function checkoutWhatsApp() {
 
-    // التأكد أن السلة ليست فارغة
-
     if (cart.length === 0) {
 
         showCartMessage(
@@ -504,8 +491,6 @@ function checkoutWhatsApp() {
         return;
     }
 
-
-    // بيانات العميل
 
     const customerName =
         document.getElementById(
@@ -531,21 +516,17 @@ function checkoutWhatsApp() {
         ).value.trim();
 
 
-    // التحقق من البيانات
-
     if (!customerName) {
 
         showCartMessage(
             "من فضلك اكتبي اسمك"
         );
 
-
         document
             .getElementById(
                 "customerName"
             )
             .focus();
-
 
         return;
     }
@@ -557,13 +538,11 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي رقم الموبايل"
         );
 
-
         document
             .getElementById(
                 "customerPhone"
             )
             .focus();
-
 
         return;
     }
@@ -575,26 +554,22 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي عنوان التوصيل"
         );
 
-
         document
             .getElementById(
                 "customerAddress"
             )
             .focus();
 
-
         return;
     }
 
-
-    // رقم واتساب Emy Sweet
 
     const phoneNumber =
         "201104168568";
 
 
     // =========================
-    // إنشاء رسالة الطلب
+    // رسالة الطلب
     // =========================
 
     let message =
@@ -608,8 +583,6 @@ function checkoutWhatsApp() {
 
     let totalOrder = 0;
 
-
-    // المنتجات
 
     cart.forEach(function (item, index) {
 
@@ -632,8 +605,6 @@ function checkoutWhatsApp() {
     });
 
 
-    // إجمالي الطلب
-
     message +=
 
         "━━━━━━━━━━━━━━━━\n" +
@@ -642,8 +613,6 @@ function checkoutWhatsApp() {
 
         "━━━━━━━━━━━━━━━━\n\n";
 
-
-    // بيانات العميل
 
     message +=
 
@@ -656,8 +625,6 @@ function checkoutWhatsApp() {
         `عنوان التوصيل: ${customerAddress}\n`;
 
 
-    // الملاحظات
-
     if (customerNotes) {
 
         message +=
@@ -665,8 +632,6 @@ function checkoutWhatsApp() {
 
     }
 
-
-    // نهاية الرسالة
 
     message +=
 
@@ -676,24 +641,18 @@ function checkoutWhatsApp() {
 
 
     // =========================
-    // فتح واتساب
+    // فتح واتساب للموبايل والكمبيوتر
     // =========================
 
     const whatsappURL =
-
         "https://wa.me/" +
-
         phoneNumber +
-
         "?text=" +
-
         encodeURIComponent(message);
 
 
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
+    // نستخدم نفس الصفحة بدل فتح نافذة جديدة
+    window.location.href = whatsappURL;
 
 }
 
@@ -709,27 +668,20 @@ function openWhatsApp() {
 
 
     const message =
-
         "*EMY SWEET*\n\n" +
-
         "مرحبًا، أريد طلب منتجات من المنيو.";
 
 
     const whatsappURL =
-
         "https://wa.me/" +
-
         phoneNumber +
-
         "?text=" +
-
         encodeURIComponent(message);
 
 
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
+    // فتح واتساب في نفس الصفحة
+    window.location.href =
+        whatsappURL;
 
 }
 
