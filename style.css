@@ -1,4 +1,4 @@
-
+```css
 /* =========================
    Reset
 ========================= */
@@ -18,20 +18,15 @@
     --primary: #b96545;
     --primary-dark: #9f5036;
     --secondary: #d99575;
-
     --light: #fff9f5;
     --soft: #f7e5dc;
     --soft-dark: #efd1c2;
-
     --dark: #5b382d;
     --text: #68463b;
     --gray: #8a7770;
-
     --white: #ffffff;
-
     --green: #25d366;
     --green-dark: #1fb957;
-
     --danger: #c85c50;
 
     --shadow-sm: 0 4px 15px rgba(91, 56, 45, 0.07);
@@ -53,7 +48,6 @@ body {
             #fff6f1 45%,
             #fffaf7 100%
         );
-
     color: var(--dark);
     min-height: 100vh;
     line-height: 1.6;
@@ -121,9 +115,7 @@ h2 {
     border-radius: 24px;
     padding: 18px;
     text-align: center;
-
     box-shadow: var(--shadow-md);
-
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease;
@@ -140,7 +132,6 @@ h2 {
     object-fit: cover;
     border-radius: 18px;
     display: block;
-
     transition: transform 0.35s ease;
 }
 
@@ -177,16 +168,12 @@ h2 {
     border: 1px solid var(--soft-dark);
     padding: 11px 18px;
     border-radius: 25px;
-
     background: var(--soft);
     color: var(--dark);
-
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
-
-    transition:
-        all 0.25s ease;
+    transition: all 0.25s ease;
 }
 
 .sizes button:hover {
@@ -200,10 +187,8 @@ h2 {
     background: var(--primary);
     color: var(--white);
     border-color: var(--primary);
-
     box-shadow:
         0 5px 12px rgba(185, 101, 69, 0.22);
-
     transform: translateY(-2px);
 }
 
@@ -223,22 +208,16 @@ h2 {
 .quantity-btn {
     width: 40px;
     height: 40px;
-
     border: none;
     border-radius: 50%;
-
     background: var(--primary);
     color: var(--white);
-
     font-size: 22px;
     font-weight: bold;
-
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     transition: all 0.25s ease;
 }
 
@@ -254,10 +233,8 @@ h2 {
 .quantity-number {
     min-width: 35px;
     text-align: center;
-
     font-size: 20px;
     font-weight: bold;
-
     color: var(--dark);
 }
 
@@ -268,10 +245,8 @@ h2 {
 
 .product-total {
     margin: 12px 0 18px;
-
     font-size: 16px;
     font-weight: bold;
-
     color: var(--text);
 }
 
@@ -287,28 +262,21 @@ h2 {
 
 .order-btn {
     width: 100%;
-
     padding: 13px 20px;
     margin-top: 5px;
-
     background: var(--primary);
     color: var(--white);
-
     border: none;
     border-radius: 14px;
-
     font-size: 16px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: all 0.25s ease;
 }
 
 .order-btn:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
-
     box-shadow:
         0 7px 18px rgba(185, 101, 69, 0.20);
 }
@@ -337,17 +305,12 @@ h2 {
 .coming-products div {
     background: var(--white);
     border: 1px solid var(--soft-dark);
-
     color: var(--dark);
-
     padding: 15px 25px;
     border-radius: 16px;
-
     font-size: 17px;
     font-weight: 600;
-
     box-shadow: var(--shadow-sm);
-
     transition: all 0.25s ease;
 }
 
@@ -363,27 +326,18 @@ h2 {
 
 .cart-floating {
     position: fixed;
-
     bottom: 25px;
     left: 25px;
-
     width: 58px;
     height: 58px;
-
     border: none;
     border-radius: 50%;
-
     background: var(--primary);
     color: var(--white);
-
     font-size: 24px;
-
     cursor: pointer;
-
     box-shadow: var(--shadow-lg);
-
     z-index: 9998;
-
     transition: all 0.3s ease;
 }
 
@@ -399,27 +353,19 @@ h2 {
 
 #cartCount {
     position: absolute;
-
     top: -5px;
     right: -5px;
-
     min-width: 23px;
     height: 23px;
-
     padding: 2px 6px;
-
     background: var(--green);
     color: white;
-
     border-radius: 50%;
-
     font-size: 12px;
     font-weight: bold;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 2px solid var(--white);
 }
 
@@ -431,16 +377,11 @@ h2 {
 .cart-overlay {
     position: fixed;
     inset: 0;
-
     background: rgba(55, 32, 25, 0.42);
-
     opacity: 0;
     visibility: hidden;
-
     z-index: 9999;
-
     transition: all 0.3s ease;
-
     backdrop-filter: blur(4px);
 }
 
@@ -456,29 +397,18 @@ h2 {
 
 .cart-popup {
     position: fixed;
-
     left: 50%;
     bottom: 0;
-
     width: min(620px, 100%);
     max-height: 92vh;
-
     background: var(--white);
-
     border-radius: 28px 28px 0 0;
-
     padding: 25px;
-
     z-index: 10000;
-
     box-shadow:
         0 -15px 45px rgba(55, 32, 25, 0.20);
-
     transform: translate(-50%, 100%);
-
-    transition:
-        transform 0.4s ease;
-
+    transition: transform 0.4s ease;
     overflow-y: auto;
 }
 
@@ -495,25 +425,20 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding-bottom: 17px;
-
     border-bottom: 1px solid var(--soft-dark);
 }
 
 .cart-popup-header h2 {
     margin: 0;
     text-align: right;
-
     font-size: 25px;
 }
 
 .cart-popup-header small {
     color: var(--gray);
-
     display: block;
     margin-top: 4px;
-
     font-size: 13px;
 }
 
@@ -525,25 +450,19 @@ h2 {
 .cart-close {
     width: 42px;
     height: 42px;
-
     border: none;
     border-radius: 50%;
-
     background: var(--soft);
     color: var(--dark);
-
     font-size: 27px;
     line-height: 1;
-
     cursor: pointer;
-
     transition: all 0.25s ease;
 }
 
 .cart-close:hover {
     background: var(--primary);
     color: var(--white);
-
     transform: rotate(90deg);
 }
 
@@ -563,25 +482,17 @@ h2 {
 
 .cart-item {
     position: relative;
-
     background: #fffaf7;
-
     border: 1px solid #ead4c8;
-
     padding: 18px;
-
     margin-bottom: 13px;
-
     border-radius: 18px;
-
     text-align: right;
-
     transition: all 0.25s ease;
 }
 
 .cart-item:hover {
     border-color: var(--secondary);
-
     box-shadow:
         0 7px 20px rgba(102, 59, 46, 0.08);
 }
@@ -593,9 +504,7 @@ h2 {
 
 .cart-item-info h3 {
     margin: 0 0 13px;
-
     color: var(--primary);
-
     font-size: 18px;
 }
 
@@ -607,21 +516,15 @@ h2 {
 .cart-item-details {
     display: flex;
     flex-wrap: wrap;
-
     gap: 8px;
-
     margin-bottom: 15px;
 }
 
 .cart-item-details span {
     background: var(--soft);
-
     color: var(--dark);
-
     padding: 7px 11px;
-
     border-radius: 10px;
-
     font-size: 13px;
 }
 
@@ -632,14 +535,10 @@ h2 {
 
 .cart-item-bottom {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
-
     gap: 10px;
-
     padding-top: 13px;
-
     border-top: 1px solid #ead4c8;
 }
 
@@ -650,7 +549,6 @@ h2 {
 
 .cart-item-bottom strong {
     color: var(--primary);
-
     font-size: 19px;
 }
 
@@ -661,20 +559,13 @@ h2 {
 
 .cart-item-bottom button {
     border: none;
-
     background: #f5d8d2;
-
     color: var(--danger);
-
     padding: 8px 14px;
-
     border-radius: 10px;
-
     cursor: pointer;
-
     font-size: 13px;
     font-weight: bold;
-
     transition: all 0.25s ease;
 }
 
@@ -690,11 +581,8 @@ h2 {
 
 #cartItems > p {
     text-align: center;
-
     padding: 30px 10px;
-
     color: var(--gray);
-
     font-size: 17px;
 }
 
@@ -704,29 +592,100 @@ h2 {
 ========================= */
 
 .cart-total {
-    display: flex;
+    background: #fffaf7;
+    border: 1px solid #ead8cf;
+    border-radius: 18px;
+    padding: 18px;
+    margin-top: 15px;
+}
 
+
+/* =========================
+   Total Row
+========================= */
+
+.total-row {
+    display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ead8cf;
+    color: var(--dark);
+}
 
-    padding: 18px;
-
-    margin-top: 15px;
-
-    background: var(--soft);
-
-    border: 1px solid var(--soft-dark);
-
-    border-radius: 16px;
-
-    font-size: 18px;
+.total-row span:first-child {
+    font-size: 16px;
     font-weight: bold;
 }
 
-.cart-total strong {
+.total-row strong {
+    font-size: 21px;
     color: var(--primary);
+}
 
-    font-size: 22px;
+
+/* =========================
+   Payment Summary
+========================= */
+
+.payment-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.payment-item {
+    background: #f8e9e1;
+    border-radius: 12px;
+    padding: 12px 8px;
+    text-align: center;
+    color: var(--dark);
+}
+
+.payment-item span {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.payment-item strong {
+    display: block;
+    font-size: 17px;
+    color: var(--primary);
+}
+
+.payment-item small {
+    display: block;
+    font-size: 11px;
+    margin-top: 4px;
+    color: var(--gray);
+}
+
+
+/* =========================
+   Order Note
+========================= */
+
+.order-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 13px;
+    padding: 10px 12px;
+    background: var(--white);
+    border-radius: 10px;
+    color: var(--gray);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.order-note span {
+    font-size: 14px;
+}
+
+.order-note p {
+    margin: 0;
 }
 
 
@@ -736,15 +695,10 @@ h2 {
 
 .customer-info {
     margin-top: 22px;
-
     background: var(--white);
-
     border: 1px solid #ead4c8;
-
     border-radius: 20px;
-
     padding: 20px;
-
     box-shadow: var(--shadow-sm);
 }
 
@@ -755,48 +709,34 @@ h2 {
 
 .customer-title {
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     padding-bottom: 15px;
-
     margin-bottom: 20px;
-
     border-bottom: 1px solid var(--soft-dark);
 }
 
 .customer-icon {
     width: 45px;
     height: 45px;
-
     flex-shrink: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: var(--soft);
-
     border-radius: 50%;
-
     font-size: 20px;
 }
 
 .customer-title h3 {
     margin: 0;
-
     font-size: 20px;
-
     color: var(--dark);
 }
 
 .customer-title p {
     margin-top: 4px;
-
     color: var(--gray);
-
     font-size: 13px;
 }
 
@@ -815,12 +755,9 @@ h2 {
 
 .form-group label {
     display: block;
-
     margin-bottom: 7px;
-
     font-size: 14px;
     font-weight: bold;
-
     color: var(--dark);
 }
 
@@ -830,9 +767,7 @@ h2 {
 
 .form-group label small {
     color: var(--gray);
-
     font-weight: normal;
-
     margin-right: 5px;
 }
 
@@ -844,23 +779,14 @@ h2 {
 .form-group input,
 .form-group textarea {
     width: 100%;
-
     border: 1px solid #ead4c8;
-
     background: #fffdfb;
-
     border-radius: 12px;
-
     padding: 12px 14px;
-
     font-family: inherit;
-
     font-size: 15px;
-
     color: var(--dark);
-
     outline: none;
-
     transition: all 0.25s ease;
 }
 
@@ -870,7 +796,6 @@ h2 {
 
 .form-group textarea {
     min-height: 85px;
-
     resize: vertical;
 }
 
@@ -882,9 +807,7 @@ h2 {
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: var(--primary);
-
     background: var(--white);
-
     box-shadow:
         0 0 0 3px rgba(185, 101, 69, 0.10);
 }
@@ -896,43 +819,29 @@ h2 {
 
 .whatsapp {
     display: block;
-
     width: fit-content;
-
     margin: 20px auto 5px;
-
     padding: 15px 30px;
-
     background: var(--green);
-
     color: var(--white);
-
     text-decoration: none;
-
     border: none;
-
     border-radius: 30px;
-
     font-size: 17px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: all 0.25s ease;
 }
 
 .whatsapp:hover {
     transform: translateY(-2px);
-
     background: var(--green-dark);
-
     box-shadow:
         0 8px 20px rgba(37, 211, 102, 0.20);
 }
 
 .checkout-button {
     width: 100%;
-
     margin-top: 18px;
 }
 
@@ -943,43 +852,29 @@ h2 {
 
 .cart-message {
     position: fixed;
-
     bottom: 100px;
     left: 50%;
-
     transform:
         translate(-50%, 20px)
         scale(0.95);
-
     background: var(--dark);
-
     color: var(--white);
-
     padding: 13px 24px;
-
     border-radius: 50px;
-
     font-size: 14px;
     font-weight: bold;
-
     z-index: 11000;
-
     opacity: 0;
     visibility: hidden;
-
     transition: all 0.3s ease;
-
     white-space: nowrap;
-
     box-shadow:
         0 8px 25px rgba(0, 0, 0, 0.18);
 }
 
 .cart-message.show {
     opacity: 1;
-
     visibility: visible;
-
     transform:
         translate(-50%, 0)
         scale(1);
@@ -992,13 +887,9 @@ h2 {
 
 footer {
     text-align: center;
-
     padding: 30px 20px;
-
     color: var(--dark);
-
     border-top: 1px solid rgba(185, 101, 69, 0.08);
-
     margin-top: 20px;
 }
 
@@ -1027,6 +918,73 @@ footer p {
 
 
 /* =========================
+   Menu Title
+========================= */
+
+.menu-title {
+    text-align: center;
+}
+
+.menu-title img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+
+/* =========================
+   About Emy Sweet
+========================= */
+
+.about-brand {
+    max-width: 900px;
+    margin: 20px auto 40px;
+    padding: 0 20px;
+}
+
+.about-content {
+    background: linear-gradient(
+        135deg,
+        #fffaf7,
+        #f8e3d7
+    );
+    border: 1px solid #ead4c8;
+    border-radius: 25px;
+    padding: 45px 35px;
+    text-align: center;
+    box-shadow:
+        0 8px 25px rgba(102, 59, 46, 0.08);
+}
+
+.about-label {
+    display: inline-block;
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.about-content h2 {
+    margin-bottom: 18px;
+    font-size: 28px;
+    color: var(--dark);
+}
+
+.about-content p {
+    max-width: 700px;
+    margin: 0 auto 10px;
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================
    Mobile
 ========================= */
 
@@ -1049,20 +1007,22 @@ footer p {
 
 
     /* Sections */
-.menu,
-.coming-soon {
-    padding: 25px 15px;
-}
 
-h2 {
-    font-size: 26px;
-    margin-bottom: 22px;
-}
+    .menu,
+    .coming-soon {
+        padding: 25px 15px;
+    }
 
-.menu h2 {
-    font-size: 32px;
-    font-weight: 700;
-}
+    h2 {
+        font-size: 26px;
+        margin-bottom: 22px;
+    }
+
+    .menu h2 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
 
     /* Products */
 
@@ -1120,10 +1080,8 @@ h2 {
     .cart-floating {
         width: 54px;
         height: 54px;
-
         bottom: 18px;
         left: 18px;
-
         font-size: 22px;
     }
 
@@ -1138,11 +1096,8 @@ h2 {
 
     .cart-popup {
         width: 100%;
-
         max-height: 94vh;
-
         padding: 18px 14px;
-
         border-radius: 24px 24px 0 0;
     }
 
@@ -1153,7 +1108,6 @@ h2 {
     .cart-close {
         width: 38px;
         height: 38px;
-
         font-size: 25px;
     }
 
@@ -1188,11 +1142,33 @@ h2 {
     }
 
 
+    /* Cart Total */
+
+    .cart-total {
+        padding: 16px;
+    }
+
+    .total-row strong {
+        font-size: 19px;
+    }
+
+    .payment-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-item {
+        padding: 10px;
+    }
+
+    .payment-item strong {
+        font-size: 16px;
+    }
+
+
     /* Customer */
 
     .customer-info {
         padding: 15px;
-
         border-radius: 17px;
     }
 
@@ -1204,7 +1180,6 @@ h2 {
     .customer-icon {
         width: 40px;
         height: 40px;
-
         font-size: 18px;
     }
 
@@ -1234,15 +1209,11 @@ h2 {
     }
 
 
-    /* Total */
+    /* Order Note */
 
-    .cart-total {
-        font-size: 15px;
-        padding: 16px;
-    }
-
-    .cart-total strong {
-        font-size: 19px;
+    .order-note {
+        font-size: 11px;
+        padding: 9px 10px;
     }
 
 
@@ -1250,11 +1221,8 @@ h2 {
 
     .whatsapp {
         width: 100%;
-
         text-align: center;
-
         font-size: 16px;
-
         padding: 14px 20px;
     }
 
@@ -1267,12 +1235,31 @@ h2 {
 
     .coming-products div {
         width: 100%;
-
         text-align: center;
-
         font-size: 15px;
-
         padding: 13px 15px;
+    }
+
+
+    /* About */
+
+    .about-brand {
+        padding: 0 15px;
+        margin: 15px auto 30px;
+    }
+
+    .about-content {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .about-content h2 {
+        font-size: 23px;
+    }
+
+    .about-content p {
+        font-size: 14px;
+        line-height: 1.8;
     }
 
 
@@ -1280,13 +1267,9 @@ h2 {
 
     .cart-message {
         bottom: 82px;
-
         max-width: 90%;
-
         white-space: normal;
-
         text-align: center;
-
         padding: 12px 18px;
     }
 }
@@ -1318,133 +1301,8 @@ h2 {
         padding: 16px 12px;
     }
 }
+```
 
-/* =========================
-About Emy Sweet
-========================= */
-
-.about-brand {
-max-width: 900px;
-margin: 20px auto 40px;
-padding: 0 20px;
-}
-
-.about-content {
-background: linear-gradient(
-135deg,
-#fffaf7,
-#f8e3d7
-);
-border: 1px solid #ead4c8;
-border-radius: 25px;
-padding: 45px 35px;
-text-align: center;
-box-shadow: 0 8px 25px rgba(102, 59, 46, 0.08);
-}
-
-.about-label {
-display: inline-block;
-color: var(--primary);
-font-size: 14px;
-font-weight: bold;
-letter-spacing: 1px;
-margin-bottom: 10px;
-}
-
-.about-content h2 {
-margin-bottom: 18px;
-font-size: 28px;
-color: var(--dark);
-}
-
-.about-content p {
-max-width: 700px;
-margin: 0 auto 10px;
-color: var(--gray);
-font-size: 16px;
-line-height: 1.9;
-}
-
-.about-content p:last-child {
-margin-bottom: 0;
-}
-
-/* =========================
-About Mobile
-========================= */
-
-@media (max-width: 600px) {
-
-
-.about-brand {
-    padding: 0 15px;
-    margin: 15px auto 30px;
-}
-
-.about-content {
-    padding: 30px 20px;
-    border-radius: 20px;
-}
-
-.about-content h2 {
-    font-size: 23px;
-}
-
-.about-content p {
-    font-size: 14px;
-    line-height: 1.8;
-}
-
-
-}
-.menu-title {
-    text-align: center;
-}
-
-.menu-title img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-}
-.total-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-}
-
-.deposit-row {
-    color: var(--dark);
-}
-
-.shipping-row {
-    color: var(--gray);
-}
-
-.pay-now-row {
-    margin-top: 8px;
-    padding-top: 12px;
-    border-top: 1px solid #ead8cf;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.order-note {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin: 15px 0;
-    padding: 12px;
-    background: var(--light);
-    border-radius: 12px;
-    font-size: 13px;
-    color: var(--dark);
-}
-
-.order-note p {
-    margin: 0;
-    line-height: 1.7;
-}
 
 
 
