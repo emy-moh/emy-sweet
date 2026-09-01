@@ -229,11 +229,12 @@ function addToCart(button) {
 
     updateCartCount();
 
-    openCart();
 
-
+    // لا تفتح السلة تلقائيًا
+    // بدلًا من ذلك تظهر رسالة بها زر للذهاب للسلة
     showCartMessage(
-        "تم إضافة المنتج للسلة"
+        "تم إضافة المنتج للسلة",
+        true
     );
 }
 
@@ -725,7 +726,7 @@ function openWhatsApp() {
 // Toast Message
 // =========================
 
-function showCartMessage(message) {
+function showCartMessage(message, showCartButton) {
 
     const oldMessage =
         document.querySelector(
@@ -750,8 +751,75 @@ function showCartMessage(message) {
         "cart-message";
 
 
-    messageBox.textContent =
+    // نص الرسالة
+    const messageText =
+        document.createElement(
+            "div"
+        );
+
+
+    messageText.textContent =
         message;
+
+
+    messageBox.appendChild(
+        messageText
+    );
+
+
+    // زر الذهاب للسلة
+    if (showCartButton) {
+
+        const cartButton =
+            document.createElement(
+                "button"
+            );
+
+
+        cartButton.type =
+            "button";
+
+
+        cartButton.textContent =
+            "🛒 الذهاب إلى السلة وتأكيد الطلب";
+
+
+        // تنسيق بسيط للزر بدون الحاجة لتعديل CSS
+        cartButton.style.marginTop =
+            "10px";
+
+        cartButton.style.padding =
+            "8px 14px";
+
+        cartButton.style.border =
+            "none";
+
+        cartButton.style.borderRadius =
+            "8px";
+
+        cartButton.style.cursor =
+            "pointer";
+
+        cartButton.style.fontWeight =
+            "bold";
+
+
+        cartButton.addEventListener(
+            "click",
+            function () {
+
+                openCart();
+
+                messageBox.remove();
+
+            }
+        );
+
+
+        messageBox.appendChild(
+            cartButton
+        );
+    }
 
 
     document.body.appendChild(
@@ -766,6 +834,12 @@ function showCartMessage(message) {
         );
 
     }, 10);
+
+
+    // الرسالة العادية تختفي بعد ثانيتين
+    // رسالة إضافة المنتج تفضل مدة أطول عشان العميل يقدر يضغط على الزر
+    const messageDuration =
+        showCartButton ? 5000 : 2000;
 
 
     setTimeout(function () {
@@ -785,7 +859,7 @@ function showCartMessage(message) {
 
         }, 300);
 
-    }, 2000);
+    }, messageDuration);
 
 }
 
