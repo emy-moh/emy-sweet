@@ -1409,6 +1409,45 @@ About Mobile
     height: 60px;
     object-fit: contain;
 }
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.deposit-row {
+    color: var(--dark);
+}
+
+.shipping-row {
+    color: var(--gray);
+}
+
+.pay-now-row {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #ead8cf;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.order-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 15px 0;
+    padding: 12px;
+    background: var(--light);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--dark);
+}
+
+.order-note p {
+    margin: 0;
+    line-height: 1.7;
+}
 
 
 
