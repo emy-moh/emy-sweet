@@ -1,3 +1,4 @@
+
 // =========================
 // اختيار الحجم
 // =========================
@@ -39,6 +40,7 @@ document.querySelectorAll(".product").forEach(function (product) {
         product.querySelector(".quantity-number");
 
 
+    // زر +
     if (plusButton) {
 
         plusButton.addEventListener("click", function () {
@@ -57,6 +59,7 @@ document.querySelectorAll(".product").forEach(function (product) {
     }
 
 
+    // زر -
     if (minusButton) {
 
         minusButton.addEventListener("click", function () {
@@ -181,19 +184,45 @@ function addToCart(button) {
         );
 
 
-    cart.push({
+    // البحث عن نفس المنتج بنفس الحجم
+    const existingItem =
+        cart.find(function (item) {
 
-        productName: productName,
+            return (
+                item.productName === productName &&
+                item.size === size
+            );
 
-        size: size,
+        });
 
-        price: price,
 
-        quantity: quantity,
+    // لو المنتج موجود بالفعل
+    if (existingItem) {
 
-        total: price * quantity
+        existingItem.quantity += quantity;
 
-    });
+        existingItem.total =
+            existingItem.price *
+            existingItem.quantity;
+
+    } else {
+
+        // لو المنتج غير موجود، نضيفه كمنتج جديد
+        cart.push({
+
+            productName: productName,
+
+            size: size,
+
+            price: price,
+
+            quantity: quantity,
+
+            total: price * quantity
+
+        });
+
+    }
 
 
     updateCart();
@@ -206,7 +235,6 @@ function addToCart(button) {
     showCartMessage(
         "تم إضافة المنتج للسلة"
     );
-
 }
 
 
@@ -229,6 +257,7 @@ function updateCart() {
 
 
     if (!cartItems || !cartTotal) {
+
         return;
     }
 
@@ -236,6 +265,7 @@ function updateCart() {
     cartItems.innerHTML = "";
 
 
+    // السلة فاضية
     if (cart.length === 0) {
 
         cartItems.innerHTML =
@@ -253,6 +283,7 @@ function updateCart() {
     let totalOrder = 0;
 
 
+    // عرض المنتجات
     cart.forEach(function (item, index) {
 
         totalOrder += item.total;
@@ -276,6 +307,7 @@ function updateCart() {
                 <h3>
                     ${item.productName}
                 </h3>
+
 
                 <div class="cart-item-details">
 
@@ -322,12 +354,12 @@ function updateCart() {
     });
 
 
+    // إجمالي الطلب
     cartTotal.textContent =
         totalOrder;
 
 
     updateCartCount();
-
 }
 
 
@@ -344,6 +376,7 @@ function updateCartCount() {
 
 
     if (!cartCount) {
+
         return;
     }
 
@@ -361,7 +394,6 @@ function updateCartCount() {
 
     cartCount.textContent =
         totalQuantity;
-
 }
 
 
@@ -372,6 +404,7 @@ function updateCartCount() {
 function removeFromCart(index) {
 
     cart.splice(index, 1);
+
 
     updateCart();
 
@@ -414,6 +447,7 @@ function openCart() {
 
 
     if (!cartPopup || !cartOverlay) {
+
         return;
     }
 
@@ -433,7 +467,6 @@ function openCart() {
 
     document.body.style.overflow =
         "hidden";
-
 }
 
 
@@ -456,6 +489,7 @@ function closeCart() {
 
 
     if (!cartPopup || !cartOverlay) {
+
         return;
     }
 
@@ -472,7 +506,6 @@ function closeCart() {
 
     document.body.style.overflow =
         "";
-
 }
 
 
@@ -482,6 +515,7 @@ function closeCart() {
 
 function checkoutWhatsApp() {
 
+    // التأكد أن السلة ليست فارغة
     if (cart.length === 0) {
 
         showCartMessage(
@@ -492,6 +526,7 @@ function checkoutWhatsApp() {
     }
 
 
+    // بيانات العميل
     const customerName =
         document.getElementById(
             "customerName"
@@ -516,17 +551,20 @@ function checkoutWhatsApp() {
         ).value.trim();
 
 
+    // التحقق من البيانات
     if (!customerName) {
 
         showCartMessage(
             "من فضلك اكتبي اسمك"
         );
 
+
         document
             .getElementById(
                 "customerName"
             )
             .focus();
+
 
         return;
     }
@@ -538,11 +576,13 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي رقم الموبايل"
         );
 
+
         document
             .getElementById(
                 "customerPhone"
             )
             .focus();
+
 
         return;
     }
@@ -554,22 +594,25 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي عنوان التوصيل"
         );
 
+
         document
             .getElementById(
                 "customerAddress"
             )
             .focus();
 
+
         return;
     }
 
 
+    // رقم واتساب Emy Sweet
     const phoneNumber =
         "201104168568";
 
 
     // =========================
-    // رسالة الطلب
+    // إنشاء رسالة الطلب
     // =========================
 
     let message =
@@ -584,18 +627,14 @@ function checkoutWhatsApp() {
     let totalOrder = 0;
 
 
+    // المنتجات
     cart.forEach(function (item, index) {
 
         message +=
-
             `*${index + 1}. ${item.productName}*\n` +
-
             `الحجم: ${item.size}\n` +
-
             `الكمية: ${item.quantity}\n` +
-
             `سعر القطعة: ${item.price} جنيه\n` +
-
             `إجمالي المنتج: ${item.total} جنيه\n\n`;
 
 
@@ -605,26 +644,22 @@ function checkoutWhatsApp() {
     });
 
 
+    // إجمالي الطلب
     message +=
-
         "━━━━━━━━━━━━━━━━\n" +
-
         `*إجمالي الطلب: ${totalOrder} جنيه*\n` +
-
         "━━━━━━━━━━━━━━━━\n\n";
 
 
+    // بيانات العميل
     message +=
-
         "*بيانات العميل*\n\n" +
-
         `الاسم: ${customerName}\n` +
-
         `رقم الموبايل: ${customerPhone}\n` +
-
         `عنوان التوصيل: ${customerAddress}\n`;
 
 
+    // الملاحظات
     if (customerNotes) {
 
         message +=
@@ -633,15 +668,14 @@ function checkoutWhatsApp() {
     }
 
 
+    // نهاية الرسالة
     message +=
-
         "\n━━━━━━━━━━━━━━━━\n" +
-
         "شكرًا لاختيارك Emy Sweet";
 
 
     // =========================
-    // فتح واتساب للموبايل والكمبيوتر
+    // فتح واتساب
     // =========================
 
     const whatsappURL =
@@ -651,9 +685,10 @@ function checkoutWhatsApp() {
         encodeURIComponent(message);
 
 
-    // نستخدم نفس الصفحة بدل فتح نافذة جديدة
-    window.location.href = whatsappURL;
-
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
 }
 
 
@@ -679,10 +714,10 @@ function openWhatsApp() {
         encodeURIComponent(message);
 
 
-    // فتح واتساب في نفس الصفحة
-    window.location.href =
-        whatsappURL;
-
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
 }
 
 
@@ -699,7 +734,9 @@ function showCartMessage(message) {
 
 
     if (oldMessage) {
+
         oldMessage.remove();
+
     }
 
 
@@ -741,7 +778,9 @@ function showCartMessage(message) {
         setTimeout(function () {
 
             if (messageBox) {
+
                 messageBox.remove();
+
             }
 
         }, 300);
