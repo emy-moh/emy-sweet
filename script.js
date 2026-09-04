@@ -4,21 +4,23 @@
 
 document.querySelectorAll(".sizes button").forEach(function (button) {
 
-    button.addEventListener("click", function (event) {
-
-        event.preventDefault();
+    button.addEventListener("click", function () {
 
         const product = this.closest(".product");
 
-        const buttons = product.querySelectorAll(".sizes button");
+        const buttons =
+            product.querySelectorAll(".sizes button");
 
         buttons.forEach(function (btn) {
+
             btn.classList.remove("selected");
+
         });
 
         this.classList.add("selected");
 
         updateProductTotal(product);
+
     });
 
 });
@@ -30,48 +32,55 @@ document.querySelectorAll(".sizes button").forEach(function (button) {
 
 document.querySelectorAll(".product").forEach(function (product) {
 
-    const plusButton = product.querySelector(".plus");
-    const minusButton = product.querySelector(".minus");
-    const quantityNumber = product.querySelector(".quantity-number");
+    const plusButton =
+        product.querySelector(".plus");
+
+    const minusButton =
+        product.querySelector(".minus");
+
+    const quantityNumber =
+        product.querySelector(".quantity-number");
 
 
     // زر +
+
     if (plusButton) {
 
-        plusButton.addEventListener("click", function (event) {
-
-            event.preventDefault();
+        plusButton.addEventListener("click", function () {
 
             let quantity =
-                Number(quantityNumber.textContent.trim());
+                Number(quantityNumber.textContent);
 
             quantity++;
 
-            quantityNumber.textContent = quantity;
+            quantityNumber.textContent =
+                quantity;
 
             updateProductTotal(product);
+
         });
 
     }
 
 
     // زر -
+
     if (minusButton) {
 
-        minusButton.addEventListener("click", function (event) {
-
-            event.preventDefault();
+        minusButton.addEventListener("click", function () {
 
             let quantity =
-                Number(quantityNumber.textContent.trim());
+                Number(quantityNumber.textContent);
 
             if (quantity > 1) {
 
                 quantity--;
 
-                quantityNumber.textContent = quantity;
+                quantityNumber.textContent =
+                    quantity;
 
                 updateProductTotal(product);
+
             }
 
         });
@@ -88,13 +97,19 @@ document.querySelectorAll(".product").forEach(function (product) {
 function updateProductTotal(product) {
 
     const selectedButton =
-        product.querySelector(".sizes button.selected");
+        product.querySelector(
+            ".sizes button.selected"
+        );
 
     const quantityNumber =
-        product.querySelector(".quantity-number");
+        product.querySelector(
+            ".quantity-number"
+        );
 
     const totalElement =
-        product.querySelector(".product-total span");
+        product.querySelector(
+            ".product-total span"
+        );
 
 
     if (!selectedButton) {
@@ -102,6 +117,7 @@ function updateProductTotal(product) {
         totalElement.textContent = "0";
 
         return;
+
     }
 
 
@@ -109,12 +125,14 @@ function updateProductTotal(product) {
         Number(selectedButton.dataset.price);
 
     const quantity =
-        Number(quantityNumber.textContent.trim());
+        Number(quantityNumber.textContent);
 
     const total =
         price * quantity;
 
-    totalElement.textContent = total;
+    totalElement.textContent =
+        total;
+
 }
 
 
@@ -135,7 +153,9 @@ function addToCart(button) {
         button.closest(".product");
 
     const selectedButton =
-        product.querySelector(".sizes button.selected");
+        product.querySelector(
+            ".sizes button.selected"
+        );
 
 
     if (!selectedButton) {
@@ -145,6 +165,7 @@ function addToCart(button) {
         );
 
         return;
+
     }
 
 
@@ -155,17 +176,20 @@ function addToCart(button) {
         selectedButton.dataset.size;
 
     const price =
-        Number(selectedButton.dataset.price);
+        Number(
+            selectedButton.dataset.price
+        );
 
     const quantity =
         Number(
             product.querySelector(
                 ".quantity-number"
-            ).textContent.trim()
+            ).textContent
         );
 
 
     // البحث عن نفس المنتج بنفس الحجم
+
     const existingItem =
         cart.find(function (item) {
 
@@ -178,6 +202,7 @@ function addToCart(button) {
 
 
     // لو المنتج موجود بالفعل
+
     if (existingItem) {
 
         existingItem.quantity += quantity;
@@ -189,12 +214,17 @@ function addToCart(button) {
     } else {
 
         // لو المنتج غير موجود، نضيفه كمنتج جديد
+
         cart.push({
 
             productName: productName,
+
             size: size,
+
             price: price,
+
             quantity: quantity,
+
             total: price * quantity
 
         });
@@ -203,14 +233,18 @@ function addToCart(button) {
 
 
     updateCart();
+
     updateCartCount();
 
 
     // لا تفتح السلة تلقائيًا
+    // بدلًا من ذلك تظهر رسالة بها زر للذهاب للسلة
+
     showCartMessage(
         "تم إضافة المنتج للسلة",
         true
     );
+
 }
 
 
@@ -221,14 +255,20 @@ function addToCart(button) {
 function updateCart() {
 
     const cartItems =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
 
     const cartTotal =
-        document.getElementById("cartTotal");
+        document.getElementById(
+            "cartTotal"
+        );
 
 
     if (!cartItems || !cartTotal) {
+
         return;
+
     }
 
 
@@ -236,16 +276,19 @@ function updateCart() {
 
 
     // السلة فاضية
+
     if (cart.length === 0) {
 
         cartItems.innerHTML =
             "<p>السلة فارغة</p>";
 
-        cartTotal.textContent = "0";
+        cartTotal.textContent =
+            "0";
 
         updateCartCount();
 
         return;
+
     }
 
 
@@ -253,13 +296,16 @@ function updateCart() {
 
 
     // عرض المنتجات
+
     cart.forEach(function (item, index) {
 
         totalOrder += item.total;
 
 
         const itemElement =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         itemElement.classList.add(
@@ -291,13 +337,11 @@ function updateCart() {
 
                 </div>
 
-
                 <div class="cart-item-bottom">
 
                     <strong>
                         ${item.total} جنيه
                     </strong>
-
 
                     <button
                         type="button"
@@ -321,10 +365,12 @@ function updateCart() {
 
 
     // إجمالي الطلب
+
     cartTotal.textContent =
         totalOrder;
 
     updateCartCount();
+
 }
 
 
@@ -335,11 +381,15 @@ function updateCart() {
 function updateCartCount() {
 
     const cartCount =
-        document.getElementById("cartCount");
+        document.getElementById(
+            "cartCount"
+        );
 
 
     if (!cartCount) {
+
         return;
+
     }
 
 
@@ -356,6 +406,7 @@ function updateCartCount() {
 
     cartCount.textContent =
         totalQuantity;
+
 }
 
 
@@ -368,6 +419,7 @@ function removeFromCart(index) {
     cart.splice(index, 1);
 
     updateCart();
+
     updateCartCount();
 
 
@@ -384,6 +436,7 @@ function removeFromCart(index) {
         );
 
     }
+
 }
 
 
@@ -394,27 +447,38 @@ function removeFromCart(index) {
 function openCart() {
 
     const cartPopup =
-        document.getElementById("cartPopup");
+        document.getElementById(
+            "cartPopup"
+        );
 
     const cartOverlay =
-        document.getElementById("cartOverlay");
+        document.getElementById(
+            "cartOverlay"
+        );
 
 
     if (!cartPopup || !cartOverlay) {
+
         return;
+
     }
 
 
     updateCart();
 
 
-    cartPopup.classList.add("show");
+    cartPopup.classList.add(
+        "show"
+    );
 
-    cartOverlay.classList.add("show");
+    cartOverlay.classList.add(
+        "show"
+    );
 
 
     document.body.style.overflow =
         "hidden";
+
 }
 
 
@@ -425,24 +489,35 @@ function openCart() {
 function closeCart() {
 
     const cartPopup =
-        document.getElementById("cartPopup");
+        document.getElementById(
+            "cartPopup"
+        );
 
     const cartOverlay =
-        document.getElementById("cartOverlay");
+        document.getElementById(
+            "cartOverlay"
+        );
 
 
     if (!cartPopup || !cartOverlay) {
+
         return;
+
     }
 
 
-    cartPopup.classList.remove("show");
+    cartPopup.classList.remove(
+        "show"
+    );
 
-    cartOverlay.classList.remove("show");
+    cartOverlay.classList.remove(
+        "show"
+    );
 
 
     document.body.style.overflow =
         "";
+
 }
 
 
@@ -453,6 +528,7 @@ function closeCart() {
 function checkoutWhatsApp() {
 
     // التأكد أن السلة ليست فارغة
+
     if (cart.length === 0) {
 
         showCartMessage(
@@ -460,27 +536,26 @@ function checkoutWhatsApp() {
         );
 
         return;
+
     }
 
 
     // بيانات العميل
+
     const customerName =
         document.getElementById(
             "customerName"
         ).value.trim();
-
 
     const customerPhone =
         document.getElementById(
             "customerPhone"
         ).value.trim();
 
-
     const customerAddress =
         document.getElementById(
             "customerAddress"
         ).value.trim();
-
 
     const customerNotes =
         document.getElementById(
@@ -489,18 +564,21 @@ function checkoutWhatsApp() {
 
 
     // التحقق من البيانات
+
     if (!customerName) {
 
         showCartMessage(
             "من فضلك اكتبي اسمك"
         );
 
-
         document
-            .getElementById("customerName")
+            .getElementById(
+                "customerName"
+            )
             .focus();
 
         return;
+
     }
 
 
@@ -510,12 +588,14 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي رقم الموبايل"
         );
 
-
         document
-            .getElementById("customerPhone")
+            .getElementById(
+                "customerPhone"
+            )
             .focus();
 
         return;
+
     }
 
 
@@ -525,16 +605,19 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي عنوان التوصيل"
         );
 
-
         document
-            .getElementById("customerAddress")
+            .getElementById(
+                "customerAddress"
+            )
             .focus();
 
         return;
+
     }
 
 
     // رقم واتساب Emy Sweet
+
     const phoneNumber =
         "201001979538";
 
@@ -556,6 +639,7 @@ function checkoutWhatsApp() {
 
 
     // المنتجات
+
     cart.forEach(function (item, index) {
 
         message +=
@@ -565,7 +649,6 @@ function checkoutWhatsApp() {
             `سعر القطعة: ${item.price} جنيه\n` +
             `إجمالي المنتج: ${item.total} جنيه\n\n`;
 
-
         totalOrder +=
             item.total;
 
@@ -573,6 +656,7 @@ function checkoutWhatsApp() {
 
 
     // إجمالي الطلب
+
     message +=
         "━━━━━━━━━━━━━━━━\n" +
         `*إجمالي الطلب: ${totalOrder} جنيه*\n` +
@@ -580,6 +664,7 @@ function checkoutWhatsApp() {
 
 
     // بيانات العميل
+
     message +=
         "*بيانات العميل*\n\n" +
         `الاسم: ${customerName}\n` +
@@ -588,6 +673,7 @@ function checkoutWhatsApp() {
 
 
     // الملاحظات
+
     if (customerNotes) {
 
         message +=
@@ -597,6 +683,7 @@ function checkoutWhatsApp() {
 
 
     // نهاية الرسالة
+
     message +=
         "\n━━━━━━━━━━━━━━━━\n" +
         "شكرًا لاختيارك Emy Sweet";
@@ -617,6 +704,7 @@ function checkoutWhatsApp() {
         whatsappURL,
         "_blank"
     );
+
 }
 
 
@@ -646,6 +734,7 @@ function openWhatsApp() {
         whatsappURL,
         "_blank"
     );
+
 }
 
 
@@ -653,10 +742,7 @@ function openWhatsApp() {
 // Toast Message
 // =========================
 
-function showCartMessage(
-    message,
-    showCartButton
-) {
+function showCartMessage(message, showCartButton) {
 
     const oldMessage =
         document.querySelector(
@@ -665,12 +751,16 @@ function showCartMessage(
 
 
     if (oldMessage) {
+
         oldMessage.remove();
+
     }
 
 
     const messageBox =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     messageBox.className =
@@ -678,8 +768,11 @@ function showCartMessage(
 
 
     // نص الرسالة
+
     const messageText =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     messageText.textContent =
@@ -692,10 +785,13 @@ function showCartMessage(
 
 
     // زر الذهاب للسلة
+
     if (showCartButton) {
 
         const cartButton =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
 
         cartButton.type =
@@ -706,7 +802,8 @@ function showCartMessage(
             "🛒 الذهاب إلى السلة وتأكيد الطلب";
 
 
-        // تنسيق بسيط للزر
+        // تنسيق بسيط للزر بدون الحاجة لتعديل CSS
+
         cartButton.style.marginTop =
             "10px";
 
@@ -741,6 +838,7 @@ function showCartMessage(
         messageBox.appendChild(
             cartButton
         );
+
     }
 
 
@@ -759,7 +857,8 @@ function showCartMessage(
 
 
     // الرسالة العادية تختفي بعد ثانيتين
-    // رسالة إضافة المنتج تفضل 5 ثواني
+    // رسالة إضافة المنتج تفضل مدة أطول عشان العميل يقدر يضغط على الزر
+
     const messageDuration =
         showCartButton ? 5000 : 2000;
 
@@ -774,12 +873,15 @@ function showCartMessage(
         setTimeout(function () {
 
             if (messageBox) {
+
                 messageBox.remove();
+
             }
 
         }, 300);
 
     }, messageDuration);
+
 }
 
 
@@ -788,6 +890,7 @@ function showCartMessage(
 // =========================
 
 updateCart();
+
 updateCartCount();
 
 
