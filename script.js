@@ -609,7 +609,7 @@ function checkoutWhatsApp() {
 
     // رقم واتساب Emy Sweet
     const phoneNumber =
-        "201104168568";
+        "201001979538;
 
 
     // =========================
@@ -700,7 +700,7 @@ function checkoutWhatsApp() {
 function openWhatsApp() {
 
     const phoneNumber =
-        "201104168568";
+        "201001979538";
 
 
     const message =
