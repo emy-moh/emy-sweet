@@ -1,16 +1,16 @@
-
 // =========================
 // اختيار الحجم
 // =========================
 
 document.querySelectorAll(".sizes button").forEach(function (button) {
 
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (event) {
+
+        event.preventDefault();
 
         const product = this.closest(".product");
 
-        const buttons =
-            product.querySelectorAll(".sizes button");
+        const buttons = product.querySelectorAll(".sizes button");
 
         buttons.forEach(function (btn) {
             btn.classList.remove("selected");
@@ -30,28 +30,24 @@ document.querySelectorAll(".sizes button").forEach(function (button) {
 
 document.querySelectorAll(".product").forEach(function (product) {
 
-    const plusButton =
-        product.querySelector(".plus");
-
-    const minusButton =
-        product.querySelector(".minus");
-
-    const quantityNumber =
-        product.querySelector(".quantity-number");
+    const plusButton = product.querySelector(".plus");
+    const minusButton = product.querySelector(".minus");
+    const quantityNumber = product.querySelector(".quantity-number");
 
 
     // زر +
     if (plusButton) {
 
-        plusButton.addEventListener("click", function () {
+        plusButton.addEventListener("click", function (event) {
+
+            event.preventDefault();
 
             let quantity =
-                Number(quantityNumber.textContent);
+                Number(quantityNumber.textContent.trim());
 
             quantity++;
 
-            quantityNumber.textContent =
-                quantity;
+            quantityNumber.textContent = quantity;
 
             updateProductTotal(product);
         });
@@ -62,17 +58,18 @@ document.querySelectorAll(".product").forEach(function (product) {
     // زر -
     if (minusButton) {
 
-        minusButton.addEventListener("click", function () {
+        minusButton.addEventListener("click", function (event) {
+
+            event.preventDefault();
 
             let quantity =
-                Number(quantityNumber.textContent);
+                Number(quantityNumber.textContent.trim());
 
             if (quantity > 1) {
 
                 quantity--;
 
-                quantityNumber.textContent =
-                    quantity;
+                quantityNumber.textContent = quantity;
 
                 updateProductTotal(product);
             }
@@ -91,19 +88,13 @@ document.querySelectorAll(".product").forEach(function (product) {
 function updateProductTotal(product) {
 
     const selectedButton =
-        product.querySelector(
-            ".sizes button.selected"
-        );
+        product.querySelector(".sizes button.selected");
 
     const quantityNumber =
-        product.querySelector(
-            ".quantity-number"
-        );
+        product.querySelector(".quantity-number");
 
     const totalElement =
-        product.querySelector(
-            ".product-total span"
-        );
+        product.querySelector(".product-total span");
 
 
     if (!selectedButton) {
@@ -118,14 +109,12 @@ function updateProductTotal(product) {
         Number(selectedButton.dataset.price);
 
     const quantity =
-        Number(quantityNumber.textContent);
+        Number(quantityNumber.textContent.trim());
 
     const total =
         price * quantity;
 
-
-    totalElement.textContent =
-        total;
+    totalElement.textContent = total;
 }
 
 
@@ -145,11 +134,8 @@ function addToCart(button) {
     const product =
         button.closest(".product");
 
-
     const selectedButton =
-        product.querySelector(
-            ".sizes button.selected"
-        );
+        product.querySelector(".sizes button.selected");
 
 
     if (!selectedButton) {
@@ -165,22 +151,17 @@ function addToCart(button) {
     const productName =
         product.dataset.product;
 
-
     const size =
         selectedButton.dataset.size;
 
-
     const price =
-        Number(
-            selectedButton.dataset.price
-        );
-
+        Number(selectedButton.dataset.price);
 
     const quantity =
         Number(
             product.querySelector(
                 ".quantity-number"
-            ).textContent
+            ).textContent.trim()
         );
 
 
@@ -211,13 +192,9 @@ function addToCart(button) {
         cart.push({
 
             productName: productName,
-
             size: size,
-
             price: price,
-
             quantity: quantity,
-
             total: price * quantity
 
         });
@@ -226,12 +203,10 @@ function addToCart(button) {
 
 
     updateCart();
-
     updateCartCount();
 
 
     // لا تفتح السلة تلقائيًا
-    // بدلًا من ذلك تظهر رسالة بها زر للذهاب للسلة
     showCartMessage(
         "تم إضافة المنتج للسلة",
         true
@@ -246,19 +221,13 @@ function addToCart(button) {
 function updateCart() {
 
     const cartItems =
-        document.getElementById(
-            "cartItems"
-        );
-
+        document.getElementById("cartItems");
 
     const cartTotal =
-        document.getElementById(
-            "cartTotal"
-        );
+        document.getElementById("cartTotal");
 
 
     if (!cartItems || !cartTotal) {
-
         return;
     }
 
@@ -272,8 +241,7 @@ function updateCart() {
         cartItems.innerHTML =
             "<p>السلة فارغة</p>";
 
-        cartTotal.textContent =
-            "0";
+        cartTotal.textContent = "0";
 
         updateCartCount();
 
@@ -291,9 +259,7 @@ function updateCart() {
 
 
         const itemElement =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         itemElement.classList.add(
@@ -308,7 +274,6 @@ function updateCart() {
                 <h3>
                     ${item.productName}
                 </h3>
-
 
                 <div class="cart-item-details">
 
@@ -359,7 +324,6 @@ function updateCart() {
     cartTotal.textContent =
         totalOrder;
 
-
     updateCartCount();
 }
 
@@ -371,13 +335,10 @@ function updateCart() {
 function updateCartCount() {
 
     const cartCount =
-        document.getElementById(
-            "cartCount"
-        );
+        document.getElementById("cartCount");
 
 
     if (!cartCount) {
-
         return;
     }
 
@@ -406,9 +367,7 @@ function removeFromCart(index) {
 
     cart.splice(index, 1);
 
-
     updateCart();
-
     updateCartCount();
 
 
@@ -425,7 +384,6 @@ function removeFromCart(index) {
         );
 
     }
-
 }
 
 
@@ -436,19 +394,13 @@ function removeFromCart(index) {
 function openCart() {
 
     const cartPopup =
-        document.getElementById(
-            "cartPopup"
-        );
-
+        document.getElementById("cartPopup");
 
     const cartOverlay =
-        document.getElementById(
-            "cartOverlay"
-        );
+        document.getElementById("cartOverlay");
 
 
     if (!cartPopup || !cartOverlay) {
-
         return;
     }
 
@@ -456,14 +408,9 @@ function openCart() {
     updateCart();
 
 
-    cartPopup.classList.add(
-        "show"
-    );
+    cartPopup.classList.add("show");
 
-
-    cartOverlay.classList.add(
-        "show"
-    );
+    cartOverlay.classList.add("show");
 
 
     document.body.style.overflow =
@@ -478,31 +425,20 @@ function openCart() {
 function closeCart() {
 
     const cartPopup =
-        document.getElementById(
-            "cartPopup"
-        );
-
+        document.getElementById("cartPopup");
 
     const cartOverlay =
-        document.getElementById(
-            "cartOverlay"
-        );
+        document.getElementById("cartOverlay");
 
 
     if (!cartPopup || !cartOverlay) {
-
         return;
     }
 
 
-    cartPopup.classList.remove(
-        "show"
-    );
+    cartPopup.classList.remove("show");
 
-
-    cartOverlay.classList.remove(
-        "show"
-    );
+    cartOverlay.classList.remove("show");
 
 
     document.body.style.overflow =
@@ -561,11 +497,8 @@ function checkoutWhatsApp() {
 
 
         document
-            .getElementById(
-                "customerName"
-            )
+            .getElementById("customerName")
             .focus();
-
 
         return;
     }
@@ -579,11 +512,8 @@ function checkoutWhatsApp() {
 
 
         document
-            .getElementById(
-                "customerPhone"
-            )
+            .getElementById("customerPhone")
             .focus();
-
 
         return;
     }
@@ -597,11 +527,8 @@ function checkoutWhatsApp() {
 
 
         document
-            .getElementById(
-                "customerAddress"
-            )
+            .getElementById("customerAddress")
             .focus();
-
 
         return;
     }
@@ -609,7 +536,7 @@ function checkoutWhatsApp() {
 
     // رقم واتساب Emy Sweet
     const phoneNumber =
-        "201001979538;
+        "201001979538";
 
 
     // =========================
@@ -726,7 +653,10 @@ function openWhatsApp() {
 // Toast Message
 // =========================
 
-function showCartMessage(message, showCartButton) {
+function showCartMessage(
+    message,
+    showCartButton
+) {
 
     const oldMessage =
         document.querySelector(
@@ -735,16 +665,12 @@ function showCartMessage(message, showCartButton) {
 
 
     if (oldMessage) {
-
         oldMessage.remove();
-
     }
 
 
     const messageBox =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     messageBox.className =
@@ -753,9 +679,7 @@ function showCartMessage(message, showCartButton) {
 
     // نص الرسالة
     const messageText =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     messageText.textContent =
@@ -771,9 +695,7 @@ function showCartMessage(message, showCartButton) {
     if (showCartButton) {
 
         const cartButton =
-            document.createElement(
-                "button"
-            );
+            document.createElement("button");
 
 
         cartButton.type =
@@ -784,7 +706,7 @@ function showCartMessage(message, showCartButton) {
             "🛒 الذهاب إلى السلة وتأكيد الطلب";
 
 
-        // تنسيق بسيط للزر بدون الحاجة لتعديل CSS
+        // تنسيق بسيط للزر
         cartButton.style.marginTop =
             "10px";
 
@@ -837,7 +759,7 @@ function showCartMessage(message, showCartButton) {
 
 
     // الرسالة العادية تختفي بعد ثانيتين
-    // رسالة إضافة المنتج تفضل مدة أطول عشان العميل يقدر يضغط على الزر
+    // رسالة إضافة المنتج تفضل 5 ثواني
     const messageDuration =
         showCartButton ? 5000 : 2000;
 
@@ -852,15 +774,12 @@ function showCartMessage(message, showCartButton) {
         setTimeout(function () {
 
             if (messageBox) {
-
                 messageBox.remove();
-
             }
 
         }, 300);
 
     }, messageDuration);
-
 }
 
 
@@ -869,9 +788,7 @@ function showCartMessage(message, showCartButton) {
 // =========================
 
 updateCart();
-
 updateCartCount();
-
 
 
 
