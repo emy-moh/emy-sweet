@@ -4,48 +4,36 @@
 
 document.querySelectorAll(".product").forEach(function (product) {
 
-    const plusButton =
-        product.querySelector(".plus");
+    const plusButton = product.querySelector(".plus");
+    const minusButton = product.querySelector(".minus");
+    const quantityNumber = product.querySelector(".quantity-number");
 
-    const minusButton =
-        product.querySelector(".minus");
-
-    const quantityNumber =
-        product.querySelector(".quantity-number");
-
-
-    // زر +
     if (plusButton) {
 
         plusButton.addEventListener("click", function () {
 
-            let quantity =
-                Number(quantityNumber.textContent);
+            let quantity = Number(quantityNumber.textContent);
 
             quantity++;
 
-            quantityNumber.textContent =
-                quantity;
+            quantityNumber.textContent = quantity;
 
             updateProductTotal(product);
         });
     }
 
 
-    // زر -
     if (minusButton) {
 
         minusButton.addEventListener("click", function () {
 
-            let quantity =
-                Number(quantityNumber.textContent);
+            let quantity = Number(quantityNumber.textContent);
 
             if (quantity > 1) {
 
                 quantity--;
 
-                quantityNumber.textContent =
-                    quantity;
+                quantityNumber.textContent = quantity;
 
                 updateProductTotal(product);
             }
@@ -61,8 +49,7 @@ document.querySelectorAll(".product").forEach(function (product) {
 
 function updateProductTotal(product) {
 
-    const priceElement =
-        product.querySelector(".product-price");
+    const priceElement = product.querySelector(".price-value");
 
     const quantityNumber =
         product.querySelector(".quantity-number");
@@ -76,13 +63,11 @@ function updateProductTotal(product) {
     }
 
 
-    // استخراج السعر من النص
-    const price =
-        Number(
-            priceElement.textContent
-                .replace("جنيه", "")
-                .trim()
-        );
+    const price = Number(
+        priceElement.textContent
+            .replace("جنيه", "")
+            .trim()
+    );
 
 
     const quantity =
@@ -93,8 +78,7 @@ function updateProductTotal(product) {
         price * quantity;
 
 
-    totalElement.textContent =
-        total;
+    totalElement.textContent = total;
 }
 
 
@@ -120,7 +104,7 @@ function addToCart(button) {
 
 
     const priceElement =
-        product.querySelector(".product-price");
+        product.querySelector(".price-value");
 
 
     const quantityElement =
@@ -137,7 +121,6 @@ function addToCart(button) {
     }
 
 
-    // السعر الثابت
     const price =
         Number(
             priceElement.textContent
@@ -147,23 +130,17 @@ function addToCart(button) {
 
 
     const quantity =
-        Number(
-            quantityElement.textContent
-        );
+        Number(quantityElement.textContent);
 
 
-    // البحث عن نفس المنتج
     const existingItem =
         cart.find(function (item) {
 
-            return (
-                item.productName === productName
-            );
+            return item.productName === productName;
 
         });
 
 
-    // لو المنتج موجود بالفعل
     if (existingItem) {
 
         existingItem.quantity += quantity;
@@ -174,22 +151,17 @@ function addToCart(button) {
 
     }
 
-    // لو المنتج غير موجود
     else {
 
         cart.push({
 
-            productName:
-                productName,
+            productName: productName,
 
-            price:
-                price,
+            price: price,
 
-            quantity:
-                quantity,
+            quantity: quantity,
 
-            total:
-                price * quantity
+            total: price * quantity
 
         });
 
@@ -201,7 +173,6 @@ function addToCart(button) {
     updateCartCount();
 
 
-    // رسالة بعد الإضافة
     showCartMessage(
         "تم إضافة المنتج للسلة",
         true
@@ -216,15 +187,11 @@ function addToCart(button) {
 function updateCart() {
 
     const cartItems =
-        document.getElementById(
-            "cartItems"
-        );
+        document.getElementById("cartItems");
 
 
     const cartTotal =
-        document.getElementById(
-            "cartTotal"
-        );
+        document.getElementById("cartTotal");
 
 
     if (!cartItems || !cartTotal) {
@@ -235,14 +202,14 @@ function updateCart() {
     cartItems.innerHTML = "";
 
 
-    // السلة فاضية
     if (cart.length === 0) {
 
         cartItems.innerHTML =
             "<p>السلة فارغة</p>";
 
-        cartTotal.textContent =
-            "0";
+
+        cartTotal.textContent = "0";
+
 
         updateCartCount();
 
@@ -253,17 +220,13 @@ function updateCart() {
     let totalOrder = 0;
 
 
-    // عرض المنتجات
     cart.forEach(function (item, index) {
 
-        totalOrder +=
-            item.total;
+        totalOrder += item.total;
 
 
         const itemElement =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         itemElement.classList.add(
@@ -321,7 +284,6 @@ function updateCart() {
     });
 
 
-    // إجمالي الطلب
     cartTotal.textContent =
         totalOrder;
 
@@ -337,9 +299,7 @@ function updateCart() {
 function updateCartCount() {
 
     const cartCount =
-        document.getElementById(
-            "cartCount"
-        );
+        document.getElementById("cartCount");
 
 
     if (!cartCount) {
@@ -352,8 +312,7 @@ function updateCartCount() {
 
     cart.forEach(function (item) {
 
-        totalQuantity +=
-            item.quantity;
+        totalQuantity += item.quantity;
 
     });
 
@@ -402,15 +361,11 @@ function removeFromCart(index) {
 function openCart() {
 
     const cartPopup =
-        document.getElementById(
-            "cartPopup"
-        );
+        document.getElementById("cartPopup");
 
 
     const cartOverlay =
-        document.getElementById(
-            "cartOverlay"
-        );
+        document.getElementById("cartOverlay");
 
 
     if (!cartPopup || !cartOverlay) {
@@ -421,14 +376,9 @@ function openCart() {
     updateCart();
 
 
-    cartPopup.classList.add(
-        "show"
-    );
+    cartPopup.classList.add("show");
 
-
-    cartOverlay.classList.add(
-        "show"
-    );
+    cartOverlay.classList.add("show");
 
 
     document.body.style.overflow =
@@ -443,15 +393,11 @@ function openCart() {
 function closeCart() {
 
     const cartPopup =
-        document.getElementById(
-            "cartPopup"
-        );
+        document.getElementById("cartPopup");
 
 
     const cartOverlay =
-        document.getElementById(
-            "cartOverlay"
-        );
+        document.getElementById("cartOverlay");
 
 
     if (!cartPopup || !cartOverlay) {
@@ -459,14 +405,9 @@ function closeCart() {
     }
 
 
-    cartPopup.classList.remove(
-        "show"
-    );
+    cartPopup.classList.remove("show");
 
-
-    cartOverlay.classList.remove(
-        "show"
-    );
+    cartOverlay.classList.remove("show");
 
 
     document.body.style.overflow =
@@ -480,7 +421,6 @@ function closeCart() {
 
 function checkoutWhatsApp() {
 
-    // التأكد أن السلة ليست فارغة
     if (cart.length === 0) {
 
         showCartMessage(
@@ -491,32 +431,33 @@ function checkoutWhatsApp() {
     }
 
 
-    // بيانات العميل
     const customerName =
-        document.getElementById(
-            "customerName"
-        ).value.trim();
+        document
+            .getElementById("customerName")
+            .value
+            .trim();
 
 
     const customerPhone =
-        document.getElementById(
-            "customerPhone"
-        ).value.trim();
+        document
+            .getElementById("customerPhone")
+            .value
+            .trim();
 
 
     const customerAddress =
-        document.getElementById(
-            "customerAddress"
-        ).value.trim();
+        document
+            .getElementById("customerAddress")
+            .value
+            .trim();
 
 
     const customerNotes =
-        document.getElementById(
-            "customerNotes"
-        ).value.trim();
+        document
+            .getElementById("customerNotes")
+            .value
+            .trim();
 
-
-    // التحقق من البيانات
 
     if (!customerName) {
 
@@ -524,13 +465,9 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي اسمك"
         );
 
-
         document
-            .getElementById(
-                "customerName"
-            )
+            .getElementById("customerName")
             .focus();
-
 
         return;
     }
@@ -542,13 +479,9 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي رقم الموبايل"
         );
 
-
         document
-            .getElementById(
-                "customerPhone"
-            )
+            .getElementById("customerPhone")
             .focus();
-
 
         return;
     }
@@ -560,26 +493,17 @@ function checkoutWhatsApp() {
             "من فضلك اكتبي عنوان التوصيل"
         );
 
-
         document
-            .getElementById(
-                "customerAddress"
-            )
+            .getElementById("customerAddress")
             .focus();
-
 
         return;
     }
 
 
-    // رقم واتساب Emy Sweet
     const phoneNumber =
         "201001979538";
 
-
-    // =========================
-    // إنشاء رسالة الطلب
-    // =========================
 
     let message =
         "*EMY SWEET*\n" +
@@ -593,58 +517,67 @@ function checkoutWhatsApp() {
     let totalOrder = 0;
 
 
-    // المنتجات
     cart.forEach(function (item, index) {
 
         message +=
+
             `*${index + 1}. ${item.productName}*\n` +
+
             `الكمية: ${item.quantity}\n` +
+
             `سعر القطعة: ${item.price} جنيه\n` +
+
             `إجمالي المنتج: ${item.total} جنيه\n\n`;
 
 
-        totalOrder +=
-            item.total;
+        totalOrder += item.total;
+
     });
 
 
-    // إجمالي الطلب
     message +=
+
         "━━━━━━━━━━━━━━━━\n" +
+
         `*إجمالي الطلب: ${totalOrder} جنيه*\n` +
+
         "━━━━━━━━━━━━━━━━\n\n";
 
 
-    // بيانات العميل
     message +=
+
         "*بيانات العميل*\n\n" +
+
         `الاسم: ${customerName}\n` +
+
         `رقم الموبايل: ${customerPhone}\n` +
+
         `عنوان التوصيل: ${customerAddress}\n`;
 
 
-    // الملاحظات
     if (customerNotes) {
 
         message +=
             `ملاحظات: ${customerNotes}\n`;
+
     }
 
 
-    // نهاية الرسالة
     message +=
+
         "\n━━━━━━━━━━━━━━━━\n" +
+
         "شكرًا لاختيارك Emy Sweet";
 
 
-    // =========================
-    // فتح واتساب
-    // =========================
-
     const whatsappURL =
+
         "https://wa.me/" +
+
         phoneNumber +
+
         "?text=" +
+
         encodeURIComponent(message);
 
 
@@ -666,14 +599,20 @@ function openWhatsApp() {
 
 
     const message =
+
         "*EMY SWEET*\n\n" +
+
         "مرحبًا، أريد طلب منتجات من المنيو.";
 
 
     const whatsappURL =
+
         "https://wa.me/" +
+
         phoneNumber +
+
         "?text=" +
+
         encodeURIComponent(message);
 
 
@@ -705,20 +644,15 @@ function showCartMessage(
 
 
     const messageBox =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     messageBox.className =
         "cart-message";
 
 
-    // نص الرسالة
     const messageText =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     messageText.textContent =
@@ -730,13 +664,10 @@ function showCartMessage(
     );
 
 
-    // زر الذهاب للسلة
     if (showCartButton) {
 
         const cartButton =
-            document.createElement(
-                "button"
-            );
+            document.createElement("button");
 
 
         cartButton.type =
@@ -803,7 +734,6 @@ function showCartMessage(
     }, 10);
 
 
-    // مدة الرسالة
     const messageDuration =
         showCartButton
             ? 5000
@@ -820,14 +750,14 @@ function showCartMessage(
         setTimeout(function () {
 
             if (messageBox) {
-
                 messageBox.remove();
-
             }
 
         }, 300);
 
+
     }, messageDuration);
+
 }
 
 
@@ -835,12 +765,13 @@ function showCartMessage(
 // تشغيل الموقع أول مرة
 // =========================
 
-// حساب إجمالي كل منتج تلقائيًا
-document.querySelectorAll(".product").forEach(function (product) {
+document
+    .querySelectorAll(".product")
+    .forEach(function (product) {
 
-    updateProductTotal(product);
+        updateProductTotal(product);
 
-});
+    });
 
 
 updateCart();
