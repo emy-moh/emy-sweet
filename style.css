@@ -1301,6 +1301,12 @@ footer p {
         padding: 16px 12px;
     }
 }
+.product-price {
+    color: #c96f4a;
+    font-size: 24px;
+    font-weight: 800;
+    margin: 15px 0;
+}
 
 
 
