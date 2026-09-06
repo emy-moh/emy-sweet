@@ -1,5 +1,6 @@
+
 // =========================
-// اختيار الحجم
+// اختيار السعر
 // =========================
 
 document.querySelectorAll(".sizes button").forEach(function (button) {
@@ -12,18 +13,16 @@ document.querySelectorAll(".sizes button").forEach(function (button) {
             product.querySelectorAll(".sizes button");
 
         buttons.forEach(function (btn) {
-
             btn.classList.remove("selected");
-
         });
 
         this.classList.add("selected");
 
         updateProductTotal(product);
-
     });
 
 });
+
 
 
 // =========================
@@ -90,6 +89,7 @@ document.querySelectorAll(".product").forEach(function (product) {
 });
 
 
+
 // =========================
 // حساب إجمالي المنتج
 // =========================
@@ -136,11 +136,13 @@ function updateProductTotal(product) {
 }
 
 
+
 // =========================
 // سلة الطلبات
 // =========================
 
 let cart = [];
+
 
 
 // =========================
@@ -161,7 +163,7 @@ function addToCart(button) {
     if (!selectedButton) {
 
         showCartMessage(
-            "من فضلك اختاري الحجم الأول"
+            "من فضلك اختاري السعر أولًا"
         );
 
         return;
@@ -171,9 +173,6 @@ function addToCart(button) {
 
     const productName =
         product.dataset.product;
-
-    const size =
-        selectedButton.dataset.size;
 
     const price =
         Number(
@@ -188,14 +187,13 @@ function addToCart(button) {
         );
 
 
-    // البحث عن نفس المنتج بنفس الحجم
+    // البحث عن نفس المنتج
 
     const existingItem =
         cart.find(function (item) {
 
             return (
-                item.productName === productName &&
-                item.size === size
+                item.productName === productName
             );
 
         });
@@ -219,8 +217,6 @@ function addToCart(button) {
 
             productName: productName,
 
-            size: size,
-
             price: price,
 
             quantity: quantity,
@@ -238,6 +234,7 @@ function addToCart(button) {
 
 
     // لا تفتح السلة تلقائيًا
+
     // بدلًا من ذلك تظهر رسالة بها زر للذهاب للسلة
 
     showCartMessage(
@@ -246,6 +243,7 @@ function addToCart(button) {
     );
 
 }
+
 
 
 // =========================
@@ -324,10 +322,6 @@ function updateCart() {
                 <div class="cart-item-details">
 
                     <span>
-                        الحجم: ${item.size}
-                    </span>
-
-                    <span>
                         الكمية: ${item.quantity}
                     </span>
 
@@ -374,6 +368,7 @@ function updateCart() {
 }
 
 
+
 // =========================
 // تحديث عدد المنتجات
 // =========================
@@ -410,6 +405,7 @@ function updateCartCount() {
 }
 
 
+
 // =========================
 // حذف منتج
 // =========================
@@ -438,6 +434,7 @@ function removeFromCart(index) {
     }
 
 }
+
 
 
 // =========================
@@ -482,6 +479,7 @@ function openCart() {
 }
 
 
+
 // =========================
 // إغلاق السلة
 // =========================
@@ -519,6 +517,7 @@ function closeCart() {
         "";
 
 }
+
 
 
 // =========================
@@ -644,7 +643,6 @@ function checkoutWhatsApp() {
 
         message +=
             `*${index + 1}. ${item.productName}*\n` +
-            `الحجم: ${item.size}\n` +
             `الكمية: ${item.quantity}\n` +
             `سعر القطعة: ${item.price} جنيه\n` +
             `إجمالي المنتج: ${item.total} جنيه\n\n`;
@@ -708,6 +706,7 @@ function checkoutWhatsApp() {
 }
 
 
+
 // =========================
 // زر واتساب العام
 // =========================
@@ -736,6 +735,7 @@ function openWhatsApp() {
     );
 
 }
+
 
 
 // =========================
@@ -857,6 +857,7 @@ function showCartMessage(message, showCartButton) {
 
 
     // الرسالة العادية تختفي بعد ثانيتين
+
     // رسالة إضافة المنتج تفضل مدة أطول عشان العميل يقدر يضغط على الزر
 
     const messageDuration =
@@ -883,6 +884,7 @@ function showCartMessage(message, showCartButton) {
     }, messageDuration);
 
 }
+
 
 
 // =========================
